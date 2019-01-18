@@ -13,6 +13,15 @@ exports.NewPlayer = function(name, password, xpos, ypos){
   }
 }
 
+exports.DeletePlayer = function(playerName){
+  console.log("Deleting Player: " + playerName);
+  for (var i=0; i < players.length; i++){
+    if(players[i].name == playerName){
+      players.splice(i, 1);
+    }
+  }
+}
+
 exports.authentication = function(playerName, password){
   console.log("Validating Credentials: " + playerName)
   for (var i=0; i < players.length; i++){

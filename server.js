@@ -9,10 +9,40 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 var port = process.env.PORT || 8080;        // set our port
+var adminPassword = "Lex15King"             // set the admin password
 
 var router = express.Router();
 router.get('/test', function(req, res) {
     res.json({ message: "Hooray! Welcome to our api it's up and running!" });
+});
+
+router.post('/newPlayer', function(req, res) {
+    var playerName = req.body.name;
+
+    if(player.checkForPlayer(playerName)){
+      res.json({ message: "Player already exists!"});
+    } else {
+      var password = req.body.password;
+      var start = maze.getStart();
+      player.NewPlayer(playerName, password, start.xpos, start.ypos);
+      console.log('Player has arrived: '+ playerName);
+      res.json({ message: "Welcome! " + playerName + ", please use the /look endpoint using your name and password as parameters to see what you can see!"});
+    }
+});
+
+router.get('/players', function(req, res) {
+    res.json({ message: "The following players exist",  "players": player.players });
+});
+
+router.delete('/players', function(req, res) {
+    var playerName = req.query.name;
+    var password = req.query.admin;
+    if(password == adminPassword){
+      player.DeletePlayer(playerName);
+      res.json({ message: playerName + " has been deleted"});
+    } else {
+      res.json({ message: "You are not the admin..."});
+    }
 });
 
 router.get('/look', function(req, res) {
@@ -82,23 +112,6 @@ router.put('/move', function(req, res) {
     }
 });
 
-router.get('/players', function(req, res) {
-    res.json({ message: "The following players exist",  "players": player.players });
-});
-
-router.post('/newPlayer', function(req, res) {
-    var playerName = req.body.name;
-
-    if(player.checkForPlayer(playerName)){
-      res.json({ message: "Player already exists!"});
-    } else {
-      var password = req.body.password;
-      var start = maze.getStart();
-      player.NewPlayer(playerName, password, start.xpos, start.ypos);
-      console.log('Player has arrived: '+ playerName);
-      res.json({ message: "Welcome! " + playerName + ", please use the /look endpoint using your name and password as parameters to see what you can see!"});
-    }
-});
 
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
