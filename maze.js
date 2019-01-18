@@ -1,21 +1,5 @@
 var exports = module.exports
 
-exports.getStart = function() {
-  for(var i=0; i<5; i++){
-    for(var j=0; j<5; j++){
-      if(maze[i][j] == "Start"){
-        console.log(maze[i][j] + " X: " + i + " Y: " + j);
-        var position = {
-          "Xpos": i,
-          "Ypos": j
-        }
-        return position;
-        break;
-      }
-    }
-  }
-}
-
 function Create2DArray(rows) {
   var arr = [];
   for (var i=0;i<rows;i++) {
@@ -54,3 +38,20 @@ maze[4][1]="Free";
 maze[4][2]="Free";
 maze[4][3]="Wall";
 maze[4][4]="Free";
+
+exports.maze = maze;
+exports.getStart = function() {
+  for(var i=0; i<5; i++){
+    for(var j=0; j<5; j++){
+      if(maze[i][j] == "Start"){
+        console.log(maze[i][j] + " X: " + i + " Y: " + j);
+        var position = {
+          "xpos": i,
+          "ypos": j
+        }
+        return position;
+        break;
+      }
+    }
+  }
+}
