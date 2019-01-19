@@ -12,7 +12,7 @@ var port = process.env.PORT || 8080;        // set our port
 var adminPassword = "Lex15King"             // set the admin password
 
 var router = express.Router();
-router.get('/test', function(req, res) {
+router.get('/health', function(req, res) {
     res.json({ message: "Hooray! Welcome to our api it's up and running!" });
 });
 
@@ -45,7 +45,7 @@ router.delete('/players', function(req, res) {
     }
 });
 
-router.get('/look', function(req, res) {
+router.get('/action/look', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.password;
     var auth = player.authentication(playerName,password);
@@ -74,7 +74,7 @@ router.get('/look', function(req, res) {
     }
 });
 
-router.put('/move', function(req, res) {
+router.put('/action/move', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.password;
     var direction = req.query.direction;
