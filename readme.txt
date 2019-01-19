@@ -1,6 +1,6 @@
 Welcome! To the maze!
 Can you use your API testing skills to navigate to the goal?
-![](Images/The%20Maze)
+![](Images/The%20Maze.jpg)
 Aimed at teaching new testers the fundamentals of API testing
 This project is designed to be run on one (facilitators) computer with multiple users interrogating the maze using their own credentials via postman.
 
