@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "80a3f057-2b2d-4fb0-afaa-2b86c0400383",
+		"name": "Maze Game",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Healthcheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LookAround",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/action/look/?name=Alex&password=banana",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"action",
+						"look",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Alex"
+						},
+						{
+							"key": "password",
+							"value": "banana"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Players",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Alex\",\n\t\"password\": \"banana\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/players",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"players"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "alex",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Player",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Alex\",\n\t\"password\": \"banana\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/newPlayer",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"newPlayer"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "alex",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Move",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "name",
+						"type": "text",
+						"value": "Alex",
+						"disabled": true
+					},
+					{
+						"key": "password",
+						"type": "text",
+						"value": "banana",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/action/move/?name=Alex&password=banana&direction=left",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"action",
+						"move",
+						""
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Alex"
+						},
+						{
+							"key": "password",
+							"value": "banana"
+						},
+						{
+							"key": "direction",
+							"value": "left"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Player",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"Alex\",\n\t\"password\": \"banana\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/players?name=Jeff&admin=Lex15King",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"players"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Jeff"
+						},
+						{
+							"key": "admin",
+							"value": "Lex15King"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
