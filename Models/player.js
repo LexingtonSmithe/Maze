@@ -13,6 +13,11 @@ exports.NewPlayer = function(name, password, xpos, ypos){
   }
 }
 
+exports.NumberOfPlayers = function(){
+  number = players.length;
+  return number;
+}
+
 exports.DeletePlayer = function(playerName){
   console.log("Deleting Player: " + playerName);
   var result = "cannot be deleted as they do not exist";

@@ -44,7 +44,6 @@ exports.getStart = function() {
   for(var i=0; i<5; i++){
     for(var j=0; j<5; j++){
       if(maze[i][j] == "Start"){
-        console.log(maze[i][j] + " X: " + i + " Y: " + j);
         var position = {
           "xpos": i,
           "ypos": j
