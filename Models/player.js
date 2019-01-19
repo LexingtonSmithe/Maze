@@ -15,28 +15,32 @@ exports.NewPlayer = function(name, password, xpos, ypos){
 
 exports.DeletePlayer = function(playerName){
   console.log("Deleting Player: " + playerName);
+  var result = "cannot be deleted as they do not exist";
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
       players.splice(i, 1);
+      result = "has been deleted";
     }
   }
+  return result;
 }
 
 exports.authentication = function(playerName, password){
   console.log("Validating Credentials: " + playerName)
+  var result = "No Player"
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
       if(players[i].password == password){
-        return "Valid";
+        result = "Valid";
         break;
       } else {
-        return "Password Incorrect";
+        result = "Password Incorrect";
         break;
       }
     }
   }
   console.log("No player found with name: " + playerName);
-  return "No Player";
+  return result;
 }
 
 exports.checkForPlayer = function(playerName){

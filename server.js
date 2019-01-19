@@ -38,8 +38,8 @@ router.delete('/players', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.admin;
     if(password == adminPassword){
-      player.DeletePlayer(playerName);
-      res.json({ message: playerName + " has been deleted"});
+      var deleteOutcome = player.DeletePlayer(playerName);
+      res.json({ message: playerName + deleteOutcome });
     } else {
       res.json({ message: "You are not the admin..."});
     }
