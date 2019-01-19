@@ -65,7 +65,7 @@ router.get('/action/look', function(req, res) {
       case "Valid":
         var view = action.Look(playerName);
         res.json({
-          "Message": "You have looked!",  "theView": view
+          "Message": "You have looked!",  "The View": view
         });
       break;
       case "No Player":

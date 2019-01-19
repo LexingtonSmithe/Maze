@@ -60,7 +60,7 @@ exports.checkForPlayer = function(playerName){
 exports.getPlayerPosition = function(playerName){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
-      console.log("Returning Player Position: " + playerName + " X:" + players[i].xpos +" Y:" + players[i].ypos)
+      console.log("Returning Player Position: " + playerName + " X:" + players[i].xpos + " Y:" + players[i].ypos)
       return {
         "xpos": players[i].xpos,
         "ypos": players[i].ypos
