@@ -44,7 +44,6 @@ exports.authentication = function(playerName, password){
       }
     }
   }
-  console.log("No player found with name: " + playerName);
   return result;
 }
 
