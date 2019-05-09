@@ -86,8 +86,9 @@ router.delete('/player', function(req, res) {
         "Message": playerName + deleteOutcome
       });
     } else {
-      res.json({
-        "Message": "You are not the admin..."
+      res.status(403).json({
+          "Status": "Forbidden",
+          "Message": "You have not provided proper credentials"
       });
     }
 });
