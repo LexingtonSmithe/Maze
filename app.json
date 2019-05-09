@@ -1,0 +1,6 @@
+{
+  "name": "Maze API Game",
+  "description": "A simple maze for demonstrating api fundamentals",
+  "repository": "https://github.com/LexingtonSmithe/Maze",
+  "keywords": ["node", "express", "static"]
+}
