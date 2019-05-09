@@ -6,43 +6,49 @@ Can you use your API testing skills to navigate to the goal?
 
 
 Aimed at teaching new testers the fundamentals of API testing
-This project is designed to be run on one (facilitators) computer with multiple users interrogating the maze using their own credentials via postman.
+This project is designed to be run on one server/computer with multiple users interrogating the maze using their own credentials via postman.
 
-Enter the command "node server.js" to start
+When running locally enter the command "node server.js" to start
 
-or
+or to host it online use
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
 
 Endpoints:
-GET: api/health
+
+GET: /api/health
+
 Check that the sever is up and how many players there are
 
-GET api/player?name=playername&admin=administrator_password
+GET /api/player?name=playername&admin=administrator_password
+
 Return all information about a player
 
-GET api/players
+GET /api/players
+
 Return the names of all players that currently exist
 
-DELETE api/player?admin=administrator_password
+DELETE /api/player?admin=administrator_password
+
 Delete an individual player
 
-DELETE api/players?admin=administrator_password
+DELETE /api/players?admin=administrator_password
+
 Delete all players
 
-POST: api/player
+POST: /api/player
 Body:
 {
-	"name": "YourName",
-	"password": "YourPassword"
+	"name": "player_name",
+	"password": "player_password"
 }
 
-GET: api/look/?name=player_name:password=player_password
+GET: /api/look/?name=player_name:password=player_password
 See what is above below and either side of your current position.
 
-PUT: api/move/?name=player_name&password=player_password&direction=direction
+PUT: /api/move/?name=player_name&password=player_password&direction=direction
 Move the player in the direction:
 *directions are lower case*
 up

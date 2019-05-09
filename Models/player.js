@@ -1,6 +1,6 @@
 var exports = module.exports = {}
 
-const players = new Array();
+var players = new Array();
 
 exports.NumberOfPlayers = function(){
   number = players.length;

@@ -42,6 +42,7 @@ router.delete('/players', function(req, res) {
 // One Player
 router.get('/player', function(req, res) {
     var playerName = req.query.name;
+    var password = req.query.admin;
     var playerStats;
     if(password=adminPassword){
         if(playerName == ""){

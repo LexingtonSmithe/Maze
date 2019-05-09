@@ -6,7 +6,7 @@ var maze = theMaze.maze;
 // Look
 exports.Look = function(playerName) {
 
-  var position = player.getPlayerPosition(playerName);
+  var position = player.GetPlayerPosition(playerName);
   var xpos = position.xpos;
   var ypos = position.ypos;
   console.log(maze[xpos][ypos] + " X: " + xpos + " Y: " + ypos);
@@ -44,7 +44,7 @@ exports.Look = function(playerName) {
 
 // Move
 exports.Move = function(playerName, direction) {
-  var position = player.getPlayerPosition(playerName);
+  var position = player.GetPlayerPosition(playerName);
   var xpos = position.xpos;
   var ypos = position.ypos;
   var message = "Move";
@@ -60,15 +60,15 @@ exports.Move = function(playerName, direction) {
           break;
           case "Start":
             message = "You are back where it all began";
-            player.setPlayerPosition(playerName, xpos, ypos-1);
+            player.SetPlayerPosition(playerName, xpos, ypos-1);
           break;
           case "Free":
             message = "You have successfully moved, take a look around...";
-            player.setPlayerPosition(playerName, xpos, ypos-1);
+            player.SetPlayerPosition(playerName, xpos, ypos-1);
           break;
           case "Goal":
             message = "Winner Winner Chicken Dinner";
-            player.setPlayerPosition(playerName, xpos, ypos-1);
+            player.SetPlayerPosition(playerName, xpos, ypos-1);
           break;
           default:
             message = "Nice try, but you cannot move outside the confines of my maze...";
@@ -85,15 +85,15 @@ exports.Move = function(playerName, direction) {
           break;
           case "Start":
             message = "You are back where it all began";
-            player.setPlayerPosition(playerName, xpos, ypos+1);
+            player.SetPlayerPosition(playerName, xpos, ypos+1);
           break;
           case "Free":
             message = "You have successfully moved, take a look around...";
-            player.setPlayerPosition(playerName, xpos, ypos+1);
+            player.SetPlayerPosition(playerName, xpos, ypos+1);
           break;
           case "Goal":
             message = "Winner Winner Chicken Dinner";
-            player.setPlayerPosition(playerName, xpos, ypos+1);
+            player.SetPlayerPosition(playerName, xpos, ypos+1);
           break;
           default:
             message = "Nice try, but you cannot move outside the confines of my maze...";
@@ -110,15 +110,15 @@ exports.Move = function(playerName, direction) {
         break;
         case "Start":
           message = "You are back where it all began";
-          player.setPlayerPosition(playerName, xpos-1, ypos);
+          player.SetPlayerPosition(playerName, xpos-1, ypos);
         break;
         case "Free":
           message = "You have successfully moved, take a look around...";
-          player.setPlayerPosition(playerName, xpos-1, ypos);
+          player.SetPlayerPosition(playerName, xpos-1, ypos);
         break;
         case "Goal":
           message = "Winner Winner Chicken Dinner";
-          player.setPlayerPosition(playerName, xpos-1, ypos);
+          player.SetPlayerPosition(playerName, xpos-1, ypos);
         break;
         default:
           message = "Nice try, but you cannot move outside the confines of my maze...";
@@ -135,15 +135,15 @@ exports.Move = function(playerName, direction) {
         break;
         case "Start":
           message = "You are back where it all began";
-          player.setPlayerPosition(playerName, xpos+1, ypos);
+          player.SetPlayerPosition(playerName, xpos+1, ypos);
         break;
         case "Free":
           message = "You have successfully moved, take a look around...";
-          player.setPlayerPosition(playerName, xpos+1, ypos);
+          player.SetPlayerPosition(playerName, xpos+1, ypos);
         break;
         case "Goal":
           message = "Winner Winner Chicken Dinner";
-          player.setPlayerPosition(playerName, xpos+1, ypos);
+          player.SetPlayerPosition(playerName, xpos+1, ypos);
         break;
         default:
           message = "Nice try, but you cannot move outside the confines of my maze...";
