@@ -44,10 +44,11 @@ exports.DeletePlayer = function(playerName){
   return result;
 };
 exports.GetAllPlayersNames = function(){
-  console.log("Deleting Player: " + playerName);
+  console.log("Getting all players names:");
   var list = [];
   for (var i=0; i < players.length; i++){
-    list.push(players[i])
+    list.push(players[i].name)
+    console.log(players[i].name);
   }
   return list;
 };
@@ -72,6 +73,7 @@ exports.Authentication = function(playerName, password){
   return result;
 };
 
+// Player Actions
 exports.GetPlayerPosition = function(playerName){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){

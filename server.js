@@ -19,7 +19,7 @@ router.get('/health', function(req, res) {
    });
 });
 // All Players
-router.get('/players', function(req, res){
+router.get('/players', function(req, res) {
     res.json({
         "Message": "The following players exist",
         "players": player.GetAllPlayersNames()
