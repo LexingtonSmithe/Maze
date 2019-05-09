@@ -4,14 +4,13 @@ var bodyParser = require('body-parser');
 var maze = require('./maze.js');
 var action = require('./action.js');
 var player = require('./Models/player.js');
-
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
 var port = process.env.PORT || 8080;        // set our port
 var adminPassword = "Lex15King"             // set the admin password
 
 var router = express.Router();
+
 router.get('/health', function(req, res) {
     var numberOfPlayers = player.NumberOfPlayers()
     res.json({
@@ -20,8 +19,11 @@ router.get('/health', function(req, res) {
    });
 });
 // All Players
-router.get('/players', function(req, res) {
-    res.json({ "Message": "The following players exist",  "players": player.players });
+router.get('/players', function(req, res){
+    res.json({
+        "Message": "The following players exist",
+        "players": player.GetAllPlayersNames()
+    });
 });
 router.delete('/players', function(req, res) {
     var password = req.query.admin;
@@ -31,8 +33,9 @@ router.delete('/players', function(req, res) {
           "Message": "All players erased"
         });
     } else {
-        res.json({
-          "Message": "You are not the admin..."
+        res.status(403).json({
+            "Status": "Forbidden",
+            "Message": "You have not provided proper credentials"
         });
     }
 });
@@ -40,15 +43,22 @@ router.delete('/players', function(req, res) {
 router.get('/player', function(req, res) {
     var playerName = req.query.name;
     var playerStats;
-    if(playerName == ""){
-        playerStats = "Error: No player name provided"
+    if(password=adminPassword){
+        if(playerName == ""){
+            playerStats = "Error: No player name provided"
+        } else {
+            playerStats = "Not Found"
+        };
+        if(player.CheckForPlayer(playerName)){
+            playerStats = player.GetPlayerInfo(playerName);
+        };
+        res.json({ "Message": playerStats});
     } else {
-        playerStats = "Not Found"
-    };
-    if(player.CheckForPlayer(playerName)){
-        playerStats = player.GetPlayerInfo(playerName);
-    };
-    res.json({ "Message": playerStats});
+        res.status(403).json({
+            "Status": "Forbidden",
+            "Message": "You have not provided proper credentials"
+        });
+    }
 });
 router.post('/player', function(req, res) {
     var playerName = req.body.name;
@@ -59,7 +69,7 @@ router.post('/player', function(req, res) {
     } else {
       var password = req.body.password;
       var start = maze.getStart();
-      player.NewPlayer(playerName, password, start.xpos, start.ypos);
+      player.CreateNewPlayer(playerName, password, start.xpos, start.ypos);
       console.log('A new player has arrived: '+ playerName);
       res.json({
         "Message": "Welcome! " + playerName + ", please use the /look endpoint using your name and password as parameters to see what you can see!"

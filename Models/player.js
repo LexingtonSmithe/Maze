@@ -2,7 +2,19 @@ var exports = module.exports = {}
 
 const players = new Array();
 
-exports.NewPlayer = function(name, password, xpos, ypos){
+exports.NumberOfPlayers = function(){
+  number = players.length;
+  return number;
+};
+exports.CheckForPlayer = function(playerName){
+  console.log("Checking if player exists: " + playerName)
+  for (var i=0; i < players.length; i++){
+    if(players[i].name == playerName){
+      return true;
+    }
+  }
+};
+exports.CreateNewPlayer = function(name, password, xpos, ypos){
   console.log("Creating Player: " + name + " : Password: " + password);
   pos = players.length;
   players[pos] = {
@@ -12,12 +24,14 @@ exports.NewPlayer = function(name, password, xpos, ypos){
     "ypos": ypos
   }
 }
-
-exports.NumberOfPlayers = function(){
-  number = players.length;
-  return number;
+exports.GetPlayerInfo = function(playerName){
+  console.log("Checking if player exists: " + playerName)
+  for (var i=0; i < players.length; i++){
+    if(players[i].name == playerName){
+      return players[i];
+    }
+  }
 };
-
 exports.DeletePlayer = function(playerName){
   console.log("Deleting Player: " + playerName);
   var result = "cannot be deleted as they do not exist";
@@ -29,12 +43,18 @@ exports.DeletePlayer = function(playerName){
   }
   return result;
 };
-
+exports.GetAllPlayersNames = function(){
+  console.log("Deleting Player: " + playerName);
+  var list = [];
+  for (var i=0; i < players.length; i++){
+    list.push(players[i])
+  }
+  return list;
+};
 exports.DeleteAllPlayers = function(){
     console.log("Deleting ALL Players");
     players = [];
 };
-
 exports.Authentication = function(playerName, password){
   console.log("Validating Credentials: " + playerName)
   var result = "No Player"
@@ -52,25 +72,6 @@ exports.Authentication = function(playerName, password){
   return result;
 };
 
-exports.CheckForPlayer = function(playerName){
-  console.log("Checking if player exists: " + playerName)
-  for (var i=0; i < players.length; i++){
-    if(players[i].name == playerName){
-      return true;
-    }
-  }
-};
-
-exports.GetPlayerInfo = function(playerName){
-  console.log("Checking if player exists: " + playerName)
-  for (var i=0; i < players.length; i++){
-    if(players[i].name == playerName){
-      return players[i];
-    }
-  }
-};
-
-
 exports.GetPlayerPosition = function(playerName){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
@@ -82,7 +83,6 @@ exports.GetPlayerPosition = function(playerName){
     }
   }
 };
-
 exports.SetPlayerPosition = function(playerName, xpos, ypos){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
