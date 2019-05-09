@@ -8,7 +8,11 @@ Can you use your API testing skills to navigate to the goal?
 Aimed at teaching new testers the fundamentals of API testing
 This project is designed to be run on one (facilitators) computer with multiple users interrogating the maze using their own credentials via postman.
 
-Enter the command "node server.js" to start or [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
+Enter the command "node server.js" to start
+
+or
+
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 
 
