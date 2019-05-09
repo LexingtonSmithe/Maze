@@ -11,7 +11,7 @@ This project is designed to be run on one (facilitators) computer with multiple 
 Enter the command "node server.js" to start.
 
 Endpoints:
-GET: api/test
+GET: api/health
 Check that the sever is up and how many players there are.
 
 POST: api/newPlayer

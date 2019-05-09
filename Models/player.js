@@ -16,7 +16,7 @@ exports.NewPlayer = function(name, password, xpos, ypos){
 exports.NumberOfPlayers = function(){
   number = players.length;
   return number;
-}
+};
 
 exports.DeletePlayer = function(playerName){
   console.log("Deleting Player: " + playerName);
@@ -24,13 +24,18 @@ exports.DeletePlayer = function(playerName){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
       players.splice(i, 1);
-      result = "has been deleted";
+      result = " has been deleted";
     }
   }
   return result;
-}
+};
 
-exports.authentication = function(playerName, password){
+exports.DeleteAllPlayers = function(){
+    console.log("Deleting ALL Players");
+    players = [];
+};
+
+exports.Authentication = function(playerName, password){
   console.log("Validating Credentials: " + playerName)
   var result = "No Player"
   for (var i=0; i < players.length; i++){
@@ -45,18 +50,28 @@ exports.authentication = function(playerName, password){
     }
   }
   return result;
-}
+};
 
-exports.checkForPlayer = function(playerName){
+exports.CheckForPlayer = function(playerName){
   console.log("Checking if player exists: " + playerName)
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
       return true;
     }
   }
-}
+};
 
-exports.getPlayerPosition = function(playerName){
+exports.GetPlayerInfo = function(playerName){
+  console.log("Checking if player exists: " + playerName)
+  for (var i=0; i < players.length; i++){
+    if(players[i].name == playerName){
+      return players[i];
+    }
+  }
+};
+
+
+exports.GetPlayerPosition = function(playerName){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
       console.log("Returning Player Position: " + playerName + " X:" + players[i].xpos + " Y:" + players[i].ypos)
@@ -66,9 +81,9 @@ exports.getPlayerPosition = function(playerName){
       };
     }
   }
-}
+};
 
-exports.setPlayerPosition = function(playerName, xpos, ypos){
+exports.SetPlayerPosition = function(playerName, xpos, ypos){
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
       players[i].xpos = xpos;
@@ -76,5 +91,6 @@ exports.setPlayerPosition = function(playerName, xpos, ypos){
       console.log(playerName + " has moved!")
     }
   }
-}
+};
+
 module.exports.players = players

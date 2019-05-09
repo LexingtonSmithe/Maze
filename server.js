@@ -19,11 +19,40 @@ router.get('/health', function(req, res) {
       "Players": numberOfPlayers
    });
 });
-
-router.post('/newPlayer', function(req, res) {
+// All Players
+router.get('/players', function(req, res) {
+    res.json({ "Message": "The following players exist",  "players": player.players });
+});
+router.delete('/players', function(req, res) {
+    var password = req.query.admin;
+    if(password == adminPassword){
+        player.DeleteAllPlayers();
+        res.json({
+          "Message": "All players erased"
+        });
+    } else {
+        res.json({
+          "Message": "You are not the admin..."
+        });
+    }
+});
+// One Player
+router.get('/player', function(req, res) {
+    var playerName = req.query.name;
+    var playerStats;
+    if(playerName == ""){
+        playerStats = "Error: No player name provided"
+    } else {
+        playerStats = "Not Found"
+    };
+    if(player.CheckForPlayer(playerName)){
+        playerStats = player.GetPlayerInfo(playerName);
+    };
+    res.json({ "Message": playerStats});
+});
+router.post('/player', function(req, res) {
     var playerName = req.body.name;
-
-    if(player.checkForPlayer(playerName)){
+    if(player.CheckForPlayer(playerName)){
       res.json({
         "Message": "Player already exists!"
       });
@@ -37,12 +66,7 @@ router.post('/newPlayer', function(req, res) {
       });
     }
 });
-
-router.get('/players', function(req, res) {
-    res.json({ "Message": "The following players exist",  "players": player.players });
-});
-
-router.delete('/players', function(req, res) {
+router.delete('/player', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.admin;
     if(password == adminPassword){
@@ -56,11 +80,11 @@ router.delete('/players', function(req, res) {
       });
     }
 });
-
+// Actions
 router.get('/action/look', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.password;
-    var auth = player.authentication(playerName,password);
+    var auth = player.Authentication(playerName,password);
     switch(auth){
       case "Valid":
         var view = action.Look(playerName);
@@ -87,13 +111,12 @@ router.get('/action/look', function(req, res) {
       })
     }
 });
-
 router.put('/action/move', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.password;
     var direction = req.query.direction;
 
-    var auth = player.authentication(playerName,password);
+    var auth = player.Authentication(playerName,password);
     switch(auth){
       case "Valid":
         if(direction){
@@ -129,7 +152,6 @@ router.put('/action/move', function(req, res) {
 });
 
 
-// REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
 
