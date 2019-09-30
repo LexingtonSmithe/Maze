@@ -220,7 +220,7 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/action/move/?name=&password=&direction=",
+					"raw": "https://maze-api-game.herokuapp.com/api/action/move/?name=&password=&direction=",
 					"protocol": "http",
 					"host": [
 						"localhost"

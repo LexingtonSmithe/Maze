@@ -34,7 +34,7 @@ router.delete('/players', function(req, res) {
         });
     } else {
         res.status(403).json({
-            "Status": "Forbidden",
+            "Status": "Error",
             "Message": "You have not provided proper credentials"
         });
     }
@@ -56,7 +56,7 @@ router.get('/player', function(req, res) {
         res.json({ "Message": playerStats});
     } else {
         res.status(403).json({
-            "Status": "Forbidden",
+            "Status": "Error",
             "Message": "You have not provided proper credentials"
         });
     }
@@ -105,19 +105,19 @@ router.get('/action/look', function(req, res) {
       break;
       case "No Player":
         res.status(401).json({
-          "Status": "error",
+          "Status": "Error",
           "Message": "Player does not exist!"
         })
       break;
       case "Password Incorrect":
       res.status(403).json({
-        "Status": "error",
+        "Status": "Error",
         "Message": "Password is incorrect!"
       })
       break;
       default:
       res.status(500).json({
-        "Status": "error",
+        "Status": "Error",
         "Message": "Something has gone terribly wrong!"
       })
     }
@@ -137,26 +137,26 @@ router.put('/action/move', function(req, res) {
           });
         } else {
           res.status(400).json({
-            "Status": "Bad Request",
+            "Status": "Error",
             "Message": "You have not supplied a direction"
           })
         }
       break;
       case "No Player":
         res.status(401).json({
-          "Status": "Unauthorized",
+          "Status": "Error",
           "Message": "Player does not exist!"
         })
       break;
       case "Password Incorrect":
       res.status(403).json({
-        "Status": "Forbidden",
+        "Status": "Error",
         "Message": "Password is incorrect!"
       })
       break;
       default:
       res.status(500).json({
-        "Status": "Generic Error",
+        "Status": "Error",
         "Message": "Something has gone terribly wrong!"
       })
     }
