@@ -44,7 +44,7 @@ router.get('/player', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.admin;
     var playerStats;
-    if(password=adminPassword){
+    if(password==adminPassword){
         if(playerName == ""){
             playerStats = "Error: No player name provided"
         } else {
@@ -86,8 +86,9 @@ router.delete('/player', function(req, res) {
         "Message": playerName + deleteOutcome
       });
     } else {
-      res.json({
-        "Message": "You are not the admin..."
+      res.status(403).json({
+          "Status": "Forbidden",
+          "Message": "You have not provided proper credentials"
       });
     }
 });
