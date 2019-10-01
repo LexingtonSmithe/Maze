@@ -10,7 +10,7 @@ exports.Look = function(playerName) {
   var xpos = position.xpos;
   var ypos = position.ypos;
   console.log(maze[xpos][ypos] + " X: " + xpos + " Y: " + ypos);
-  var up, down, left, right, view, message response;
+  var up, down, left, right, view, message, response;
 
   if (ypos-1 < 0){
     up = "Wall";
