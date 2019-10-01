@@ -6,6 +6,15 @@ exports.NumberOfPlayers = function(){
   number = players.length;
   return number;
 };
+exports.NumberOfWinners = function(){
+    var winners = 0;
+    for (var i=0; i < players.length; i++){
+        if(players[i].winner == true){
+            winners++
+        }
+    }
+    return winners
+};
 exports.CheckForPlayer = function(playerName){
   console.log("Checking if player exists: " + playerName)
   for (var i=0; i < players.length; i++){
@@ -14,12 +23,22 @@ exports.CheckForPlayer = function(playerName){
     }
   }
 };
+
+exports.SetPlayerWinnerFlag = function(playerName){
+    for (var i=0; i < players.length; i++){
+        if(players[i].name == playerName){
+            players[i].winner =  true;
+        }
+    }
+};
+
 exports.CreateNewPlayer = function(name, password, xpos, ypos){
   console.log("Creating Player: " + name + " : Password: " + password);
   pos = players.length;
   players[pos] = {
     "name": name,
     "password": password,
+    "winner": false,
     "xpos": xpos,
     "ypos": ypos
   }
@@ -91,6 +110,7 @@ exports.SetPlayerPosition = function(playerName, xpos, ypos){
       players[i].xpos = xpos;
       players[i].ypos = ypos;
       console.log(playerName + " has moved!")
+
     }
   }
 };

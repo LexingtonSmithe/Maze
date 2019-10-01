@@ -10,7 +10,7 @@ exports.Look = function(playerName) {
   var xpos = position.xpos;
   var ypos = position.ypos;
   console.log(maze[xpos][ypos] + " X: " + xpos + " Y: " + ypos);
-  var up, down, left, right;
+  var up, down, left, right, view, message response;
 
   if (ypos-1 < 0){
     up = "Wall";
@@ -32,14 +32,22 @@ exports.Look = function(playerName) {
   } else {
     right = maze[xpos+1][ypos];
   }
-  var view = {
+  if(maze[xpos][ypos] == "Goal"){
+      message = "You stand at the winners podium and take a deep breath... this is what victory smells like..."
+  }
+  message = "You have looked!";
+  view = {
     "Up": up,
     "Down": down,
     "Left": left,
     "Right": right
   }
-  console.log(view)
-  return view;
+  response = {
+    "Message": message,
+    "The View": view
+  }
+  console.log(view);
+  return response;
 }
 
 // Move
@@ -67,7 +75,8 @@ exports.Move = function(playerName, direction) {
             player.SetPlayerPosition(playerName, xpos, ypos-1);
           break;
           case "Goal":
-            message = "Winner Winner Chicken Dinner";
+            message = "Winner Winner Chicken Dinner (please announce your victory)";
+            player.SetPlayerWinnerFlag(playerName);
             player.SetPlayerPosition(playerName, xpos, ypos-1);
           break;
           default:
@@ -92,7 +101,8 @@ exports.Move = function(playerName, direction) {
             player.SetPlayerPosition(playerName, xpos, ypos+1);
           break;
           case "Goal":
-            message = "Winner Winner Chicken Dinner";
+            message = "Winner Winner Chicken Dinner (please announce your victory)";
+            player.SetPlayerWinnerFlag(playerName);
             player.SetPlayerPosition(playerName, xpos, ypos+1);
           break;
           default:
@@ -117,7 +127,8 @@ exports.Move = function(playerName, direction) {
           player.SetPlayerPosition(playerName, xpos-1, ypos);
         break;
         case "Goal":
-          message = "Winner Winner Chicken Dinner";
+          message = "Winner Winner Chicken Dinner (please announce your victory)";
+          player.SetPlayerWinnerFlag(playerName);
           player.SetPlayerPosition(playerName, xpos-1, ypos);
         break;
         default:
@@ -142,7 +153,8 @@ exports.Move = function(playerName, direction) {
           player.SetPlayerPosition(playerName, xpos+1, ypos);
         break;
         case "Goal":
-          message = "Winner Winner Chicken Dinner";
+          message = "Winner Winner Chicken Dinner (please announce your victory)";
+          player.SetPlayerWinnerFlag(playerName);
           player.SetPlayerPosition(playerName, xpos+1, ypos);
         break;
         default:
@@ -150,6 +162,8 @@ exports.Move = function(playerName, direction) {
       }
     }
     break;
+    default:
+        message = "The direction you supplied is not valid, please use 'up', 'down', 'left', 'right'";
   }
   return {message: message};
 }

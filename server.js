@@ -12,10 +12,12 @@ var adminPassword = "Lex15King"             // set the admin password
 var router = express.Router();
 
 router.get('/health', function(req, res) {
-    var numberOfPlayers = player.NumberOfPlayers()
+    var numberOfPlayers = player.NumberOfPlayers();
+    var numberOfWinners = player.NumberOfWinners();
     res.json({
       "Message": "Hooray! Welcome to our api it's up and running!",
-      "Players": numberOfPlayers
+      "Players": numberOfPlayers,
+      "Winners": winners
    });
 });
 // All Players
@@ -99,9 +101,9 @@ router.get('/action/look', function(req, res) {
     var auth = player.Authentication(playerName,password);
     switch(auth){
       case "Valid":
-        var view = action.Look(playerName);
+        var response = action.Look(playerName);
         res.json({
-          "Message": "You have looked!",  "The View": view
+          response
         });
       break;
       case "No Player":
@@ -162,7 +164,6 @@ router.put('/action/move', function(req, res) {
       })
     }
 });
-
 
 // all of our routes will be prefixed with /api
 app.use('/api', router);
