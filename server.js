@@ -75,7 +75,7 @@ router.post('/player', function(req, res) {
       player.CreateNewPlayer(playerName, password, start.xpos, start.ypos);
       console.log('A new player has arrived: '+ playerName);
       res.json({
-        "Message": "Welcome! " + playerName + ", please use the /look endpoint using your name and password as parameters to see what you can see!"
+        "Message": "Welcome! " + playerName + ", please use the /action/look & /action/move endpoints using your name and password as parameters to see what you can see!"
       });
     }
 });
