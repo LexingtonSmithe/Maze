@@ -65,33 +65,54 @@ router.get('/player', function(req, res) {
 });
 router.post('/player', function(req, res) {
     var playerName = req.body.name;
+    var password = req.body.password;
     if(player.CheckForPlayer(playerName)){
       res.json({
         "Message": "Player already exists!"
       });
     } else {
-      var password = req.body.password;
-      var start = maze.getStart();
-      player.CreateNewPlayer(playerName, password, start.xpos, start.ypos);
-      console.log('A new player has arrived: '+ playerName);
-      res.json({
-        "Message": "Welcome! " + playerName + ", please use the /action/look & /action/move endpoints using your name and password as parameters to see what you can see!"
-      });
+        if(!playerName || !password){
+            res.json({
+                "Message": "'name' or 'password' not supplied. Please add these as paramters in your request"
+            })
+        } else {
+            var start = maze.getStart();
+            player.CreateNewPlayer(playerName, password, start.xpos, start.ypos);
+            console.log('A new player has arrived: '+ playerName);
+            res.json({
+              "Message": "Welcome! " + playerName + ", please use the /action/look & /action/move endpoints using your name and password as parameters to see what you can see!"
+            });
+        }
     }
 });
 router.delete('/player', function(req, res) {
     var playerName = req.query.name;
-    var password = req.query.admin;
-    if(password == adminPassword){
-      var deleteOutcome = player.DeletePlayer(playerName);
-      res.json({
-        "Message": playerName + deleteOutcome
-      });
-    } else {
+    var password = req.query.password;
+    var auth = player.Authentication(playerName,password);
+    switch(auth){
+      case "Valid":
+          var deleteOutcome = player.DeletePlayer(playerName);
+          res.json({
+            "Message": playerName + deleteOutcome
+          });
+          break;
+      case "No Player":
+        res.status(401).json({
+          "Status": "Error",
+          "Message": "Player does not exist!"
+        })
+      break;
+      case "Password Incorrect":
       res.status(403).json({
-          "Status": "Forbidden",
-          "Message": "You have not provided proper credentials"
-      });
+        "Status": "Error",
+        "Message": "Password is incorrect!"
+      })
+      break;
+      default:
+      res.status(500).json({
+        "Status": "Error",
+        "Message": "Something has gone terribly wrong!"
+      })
     }
 });
 // Actions

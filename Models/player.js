@@ -76,7 +76,7 @@ exports.DeleteAllPlayers = function(){
     players = [];
 };
 exports.Authentication = function(playerName, password){
-  console.log("Validating Credentials: " + playerName)
+  console.log("Validating Credentials: " + playerName + " : " + password);
   var result = "No Player"
   for (var i=0; i < players.length; i++){
     if(players[i].name == playerName){
