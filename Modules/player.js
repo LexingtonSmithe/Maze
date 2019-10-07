@@ -27,7 +27,7 @@ exports.CheckForPlayer = function(playerName){
 exports.SetPlayerWinnerFlag = function(playerName){
     for (var i=0; i < players.length; i++){
         if(players[i].name == playerName){
-            players[i].winner =  true;
+            players[i].winner = true;
         }
     }
 };
@@ -71,6 +71,18 @@ exports.GetAllPlayersNames = function(){
   }
   return list;
 };
+exports.GetAllWinnersNames = function(){
+  console.log("Getting all winners names:");
+  var list = [];
+  for (var i=0; i < players.length; i++){
+      if(players[i].winner == true) {
+          list.push(players[i].name)
+          console.log(players[i].name);
+      }
+  }
+  return list;
+};
+
 exports.DeleteAllPlayers = function(){
     console.log("Deleting ALL Players");
     players = [];

@@ -17,15 +17,28 @@ router.get('/health', function(req, res) {
     var numberOfWinners = player.NumberOfWinners();
     res.json({
       "Message": "Hooray! Welcome to our api it's up and running!",
-      "Players": numberOfPlayers,
-      "Winners": numberOfWinners
+      "Players": {
+          "count": player.NumberOfPlayers(),
+          "names": player.GetAllPlayersNames(),
+      },
+      "Winners": {
+          "count": player.NumberOfWinners(),
+          "names": player.GetAllWinnersNames()
+      }
    });
 });
 // All Players
 router.get('/players', function(req, res) {
     res.json({
         "Message": "The following players exist",
-        "players": player.GetAllPlayersNames()
+        "Players": {
+            "count": player.NumberOfPlayers(),
+            "names": player.GetAllPlayersNames(),
+        },
+        "Winners": {
+            "count": player.NumberOfWinners(),
+            "names": player.GetAllWinnersNames()
+        }
     });
 });
 router.delete('/players', function(req, res) {
