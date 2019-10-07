@@ -17,7 +17,7 @@ router.get('/health', function(req, res) {
     res.json({
       "Message": "Hooray! Welcome to our api it's up and running!",
       "Players": numberOfPlayers,
-      "Winners": winners
+      "Winners": numberOfWinners
    });
 });
 // All Players
