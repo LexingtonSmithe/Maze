@@ -1,9 +1,10 @@
 var express    = require('express');
 var app        = express();
 var bodyParser = require('body-parser');
-var maze = require('./maze.js');
-var action = require('./action.js');
-var player = require('./Models/player.js');
+var maze = require('./Modules/maze.js');
+var action = require('./Modules/action.js');
+var player = require('./Modules/player.js');
+//var utils = require('./Modules/utils.js');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 var port = process.env.PORT || 8080;        // set our port
@@ -47,7 +48,7 @@ router.get('/player', function(req, res) {
     var password = req.query.admin;
     var playerStats;
     if(password==adminPassword){
-        if(playerName == ""){
+        if(playerName == "" || !playerName){
             playerStats = "Error: No player name provided"
         } else {
             playerStats = "Not Found"
@@ -88,31 +89,37 @@ router.post('/player', function(req, res) {
 router.delete('/player', function(req, res) {
     var playerName = req.query.name;
     var password = req.query.password;
-    var auth = player.Authentication(playerName,password);
-    switch(auth){
-      case "Valid":
-          var deleteOutcome = player.DeletePlayer(playerName);
-          res.json({
-            "Message": playerName + deleteOutcome
-          });
-          break;
-      case "No Player":
-        res.status(401).json({
-          "Status": "Error",
-          "Message": "Player does not exist!"
+    if(!playerName || !password){
+        res.json({
+            "Message": "'name' or 'password' not supplied. Please add these as paramters in your request"
         })
-      break;
-      case "Password Incorrect":
-      res.status(403).json({
-        "Status": "Error",
-        "Message": "Password is incorrect!"
-      })
-      break;
-      default:
-      res.status(500).json({
-        "Status": "Error",
-        "Message": "Something has gone terribly wrong!"
-      })
+    } else {
+        var auth = player.Authentication(playerName,password);
+        switch(auth){
+          case "Valid":
+              var deleteOutcome = player.DeletePlayer(playerName);
+              res.json({
+                "Message": playerName + deleteOutcome
+              });
+              break;
+          case "No Player":
+            res.status(401).json({
+              "Status": "Error",
+              "Message": "Player does not exist!"
+            })
+          break;
+          case "Password Incorrect":
+          res.status(403).json({
+            "Status": "Error",
+            "Message": "Password is incorrect!"
+          })
+          break;
+          default:
+          res.status(500).json({
+            "Status": "Error",
+            "Message": "Something has gone terribly wrong!"
+          })
+        }
     }
 });
 // Actions

@@ -1,5 +1,5 @@
 var theMaze = require('./maze.js');
-var player = require('./Models/player.js');
+var player = require('./player.js');
 var exports = module.exports
 
 var maze = theMaze.maze;
