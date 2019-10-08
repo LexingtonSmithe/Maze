@@ -9,7 +9,7 @@ exports.CheckForPlayer = function(playerName) {
 };
 
 exports.SetPlayerWinnerFlag = function(playerName) {
-	var index = players.indexOf(playerName);
+	var index = players.findIndex(players => players.name == playerName);
 	players[index].winner = true;
 };
 
@@ -71,7 +71,7 @@ exports.Authentication = function(playerName, password) {
 
 // Player Actions
 exports.GetPlayerPosition = function(playerName) {
-	var index = players.indexOf(playerName);
+	var index = players.findIndex(players => players.name == playerName);
 	console.log("Returning Player Position: " + playerName + " X:" + players[index].xpos + " Y:" + players[index].ypos)
 	return {
 		"xpos": players[index].xpos,
@@ -79,7 +79,7 @@ exports.GetPlayerPosition = function(playerName) {
 	};
 };
 exports.SetPlayerPosition = function(playerName, xpos, ypos) {
-	var index = players.indexOf(playerName);
+	var index = players.findIndex(players => players.name == playerName);
 	players[index].xpos = xpos;
 	players[index].ypos = ypos;
 	console.log(playerName + " has moved!")
