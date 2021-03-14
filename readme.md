@@ -40,8 +40,7 @@ Delete all players
 
 POST: /api/player
 
-Body:
-
+body:
 {
 	"name": "player_name",
 	"password": "player_password"
