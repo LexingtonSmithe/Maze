@@ -45,10 +45,14 @@ Body:
 	"password": "player_password"
 }
 
+Create a new player
+
 GET: /api/look/?name=player_name:password=player_password
+
 See what is above below and either side of your current position.
 
 PUT: /api/move/?name=player_name&password=player_password&direction=direction
+
 Move the player in the direction:
 *directions are lower case*
 up
