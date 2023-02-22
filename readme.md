@@ -12,9 +12,11 @@ When running locally enter the command "node server.js" to start
 
 or to host it online use
 
+***UPDATE*** 
+Heroku no longer has a free version
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-
+https://dashboard.render.com/
 
 Endpoints:
 
