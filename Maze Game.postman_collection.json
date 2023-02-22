@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "bad6670a-3954-48be-bd08-86c3d336e997",
+		"_postman_id": "7b8b5d85-9f5d-49de-a292-aaff7e9fac74",
 		"name": "Maze Game",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -10,17 +10,11 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/health",
+					"raw": "https://{{url}}/api/health",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -42,17 +36,11 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/action/look?name=&password=",
+					"raw": "https://{{url}}/api/action/look?name={{name}}&password={{password}}",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -62,11 +50,11 @@
 					"query": [
 						{
 							"key": "name",
-							"value": ""
+							"value": "{{name}}"
 						},
 						{
 							"key": "password",
-							"value": ""
+							"value": "{{password}}"
 						}
 					]
 				}
@@ -85,17 +73,11 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/player?name=&admin=",
+					"raw": "https://{{url}}/api/player?name={{name}}&admin={{admin}}",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -104,11 +86,11 @@
 					"query": [
 						{
 							"key": "name",
-							"value": ""
+							"value": "{{name}}"
 						},
 						{
 							"key": "admin",
-							"value": ""
+							"value": "{{admin}}"
 						}
 					]
 				}
@@ -127,17 +109,11 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": ""
-				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/players",
+					"raw": "https://{{url}}/api/players",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -161,31 +137,17 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"name\": \"your_name_here\",\n\t\"password\": \"your_password_here\"\n}"
+					"raw": "{\n\t\"name\": \"{{name}}\",\n\t\"password\": \"{{password}}\"\n}"
 				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/player",
+					"raw": "https://{{url}}/api/player",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
 						"player"
-					],
-					"query": [
-						{
-							"key": "name",
-							"value": "alex",
-							"disabled": true
-						},
-						{
-							"key": "password",
-							"value": "",
-							"disabled": true
-						}
 					]
 				}
 			},
@@ -220,12 +182,11 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/action/move/?name=&password=&direction=",
+					"raw": "http://{{url}}/api/action/move/?name={{name}}&password={{password}}&direction=up",
 					"protocol": "http",
 					"host": [
-						"localhost"
+						"{{url}}"
 					],
-					"port": "8080",
 					"path": [
 						"api",
 						"action",
@@ -235,15 +196,15 @@
 					"query": [
 						{
 							"key": "name",
-							"value": ""
+							"value": "{{name}}"
 						},
 						{
 							"key": "password",
-							"value": ""
+							"value": "{{password}}"
 						},
 						{
 							"key": "direction",
-							"value": ""
+							"value": "up"
 						}
 					]
 				}
@@ -262,17 +223,11 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Alex\",\n\t\"password\": \"banana\"\n}"
-				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/player/?name=&admin=",
+					"raw": "https://{{url}}/api/player/?name=alex&password=123",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -282,11 +237,11 @@
 					"query": [
 						{
 							"key": "name",
-							"value": ""
+							"value": "alex"
 						},
 						{
-							"key": "admin",
-							"value": ""
+							"key": "password",
+							"value": "123"
 						}
 					]
 				}
@@ -305,17 +260,11 @@
 						"type": "text"
 					}
 				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n\t\"name\": \"Alex\",\n\t\"password\": \"banana\"\n}"
-				},
 				"url": {
-					"raw": "https://maze-api-game.herokuapp.com/api/players/?admin=",
+					"raw": "https://{{url}}/api/players/?admin={{admin}}",
 					"protocol": "https",
 					"host": [
-						"maze-api-game",
-						"herokuapp",
-						"com"
+						"{{url}}"
 					],
 					"path": [
 						"api",
@@ -325,7 +274,7 @@
 					"query": [
 						{
 							"key": "admin",
-							"value": ""
+							"value": "{{admin}}"
 						}
 					]
 				}
